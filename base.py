@@ -111,7 +111,6 @@ classifier.add(Dense(units=80, kernel_initializer='uniform', activation='relu', 
 classifier.add(Dense(units=80, kernel_initializer='uniform', activation='relu'))
 classifier.add(Dense(units=1, kernel_initializer='uniform', activation='sigmoid'))
 classifier.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-classifier.fit(X_train, y_train, batch_size=10, epochs=100)
 history = classifier.fit(X_train, y_train, batch_size=10, epochs=100)
 
 # Plotting accuracy over epochs
@@ -121,6 +120,14 @@ plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.show()
 
+# Plotting loss over accuracy
+
+plt.plot(history.history['loss'], history.history['accuracy'])
+plt.title('Loss over Accuracy')
+plt.xlabel('Loss')
+plt.ylabel('Accuracy')
+plt.grid(True)
+plt.show()
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
