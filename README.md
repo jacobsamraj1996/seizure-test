@@ -3,13 +3,14 @@
 Find the seizure
 
 1. Clone the repository:
-
- git clone https://github.com/jacobsamraj1996/seizure-test.git
-
+```
+  git clone https://github.com/jacobsamraj1996/seizure-test.git
+```
 
 2. Create a virtual environment:
-
-  py -m venv env
+ ```
+   py -m venv env
+  ```
 3. Activate the virtual environment:
 
 - For Windows:
@@ -25,11 +26,11 @@ Find the seizure
   ```
 
 4. Install the required dependencies:
-
- pip install -r requirements.txt
-
+  ```
+   pip install -r requirements.txt
+  ```
 5. Run the application:
-
-  python main.py
-
+  ```
+    python main.py
+  ```
 
