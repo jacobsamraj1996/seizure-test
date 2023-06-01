@@ -4,7 +4,7 @@ Find the seizure
 
 1. Clone the repository:
 
-git clone "https://github.com/jacobsamraj1996/seizure-test.git"
+ git clone https://github.com/jacobsamraj1996/seizure-test.git
 
 
 2. Create a virtual environment:
@@ -26,10 +26,10 @@ git clone "https://github.com/jacobsamraj1996/seizure-test.git"
 
 4. Install the required dependencies:
 
-pip install -r requirements.txt
+ pip install -r requirements.txt
 
 5. Run the application:
 
- python main.py
+  python main.py
 
 
