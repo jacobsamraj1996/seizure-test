@@ -1,56 +1,65 @@
-Import necessary libraries:
+################tnn file#####################
 
-numpy as np: A library for numerical operations in Python.
-pandas as pd: A library for data manipulation and analysis.
-matplotlib.pyplot as plt: A library for creating visualizations in Python.
-seaborn as sn: A library for statistical data visualization.
-warnings: A module for controlling warning messages in Python.
-Data File and Environment:
+Importing the required libraries: The code begins by importing the necessary libraries such as numpy, matplotlib, pandas, seaborn, and Keras.
 
-The comments mention that the code is running in a Python 3 environment with helpful analytics libraries installed.
-It references the Kaggle platform and provides information about the environment and file paths specific to Kaggle.
-Read and Preprocess Data:
+Loading and exploring the dataset: The code reads a CSV file named 'data.csv' using pandas and assigns it to the variable ESR. It then prints the first few rows of the dataset using ESR.head().
 
-Read the data from a CSV file named 'data.csv' using pd.read_csv().
-Drop the first column of the DataFrame using .drop(columns = ESR.columns[0]).
-Display the first few rows of the DataFrame using .head() and print().
-Analyze Data:
+Preprocessing the target variable: The code selects the 'y' column from the dataset and assigns it to the variable tgt. It sets any values greater than 1 to 0, effectively binarizing the target variable.
 
-Store the column names of the DataFrame in the cols variable.
-Create a target variable tgt by selecting the 'y' column from the DataFrame.
-Set any values in tgt greater than 1 to 0 using tgt[tgt > 1] = 0.
-Create a countplot of the target variable using sn.countplot() and label it as "Count".
-Compute and print the number of trials for the non-seizure class and seizure class using tgt.value_counts().
-Check for any missing values in the DataFrame using .isnull().sum().sum().
-Compute and print descriptive statistics of the DataFrame using .describe().
-Prepare Data for Modeling:
+Visualizing the class distribution: The code uses seaborn's countplot function to create a bar plot showing the count of each class in the target variable. It also calculates and prints the number of trials for each class.
 
-Extract the target variable values into Y by selecting the 178th column using .iloc[:,178].values.
-Determine the shape of Y using .shape.
-Extract the feature variables into X by selecting columns 1 to 177 using .iloc[:,1:178].values.
-Determine the shape of X using .shape.
-Split Data for Training and Testing:
+Checking for missing values: The code uses the isnull() function to check for missing values in the dataset. It then prints the sum of missing values for each column.
 
-Import train_test_split and cross_val_score from sklearn.model_selection.
-Split the data into training and testing sets using train_test_split(), with 20% of the data assigned to testing.
-Import StandardScaler from sklearn.preprocessing.
-Create a StandardScaler object named sc for standardizing the feature data.
-Standardize the training data using sc.fit_transform(X_train).
-Standardize the testing data using sc.transform(X_test).
-Train a Support Vector Classifier (SVC):
+Extracting the feature matrix: The code selects columns 1 to 178 from the dataset using ESR.iloc[:,1:179] and assigns it to the variable X. It also prints the shape of the feature matrix.
 
-Import SVC from sklearn.svm.
-Create an SVC classifier named clf.
-Fit the classifier to the standardized training data using clf.fit(X_train, y_train).
-Predict and Evaluate:
+Plotting sample data: The code uses matplotlib to plot some sample data from the feature matrix X. It creates subplots and plots the values of specific rows from X.
 
-Predict the labels for the standardized testing data using clf.predict(X_test).
-Calculate the accuracy of the classifier using clf.score(X_train, y_train).
-Round the accuracy score to two decimal places using round().
-Print the accuracy score as a percentage.
-Define new_input1 as a list containing the values of the 6th row and the first 177 columns of the DataFrame.
-Print new_input1.
-Predict the output label for new_input1 using clf.predict(new_input1).
-Print the predicted output label.
-Check if the predicted output is equal to [1] and print a corresponding message.
-If the predicted output is not equal to [1], print a different message.
+Preparing the target variable: The code selects the last column (index 179) from the dataset and assigns it to the variable y. It sets any values greater than 1 to 0, binarizing the target variable.
+
+Splitting the dataset: The code uses train_test_split from scikit-learn to split the feature matrix X and target variable y into training and testing sets, with a test size of 20% of the data.
+
+Feature scaling: The code uses StandardScaler from scikit-learn to scale the features. It fits the scaler on the training data (X_train) and then transforms both the training and testing data.
+
+Training and evaluating various classification models:
+
+Logistic Regression: The code creates a LogisticRegression classifier, fits it on the training data, and predicts the labels for the testing data. It calculates the accuracy of the model on the training data (acc_log_reg) and prints it.
+Support Vector Machine (SVM): The code creates an SVC classifier, fits it on the training data, predicts the labels for the testing data, calculates the accuracy on the training data (acc_svc), and prints it.
+Linear SVM: The code creates a LinearSVC classifier, fits it on the training data, predicts the labels for the testing data, calculates the accuracy on the training data (acc_linear_svc), and prints it.
+K-nearest neighbor: The code creates a KNeighborsClassifier classifier, fits it on the training data, predicts the labels for the testing data, calculates the accuracy on the training data (acc_knn), and prints it.
+Gaussian Naive Bayes: The code creates a GaussianNB classifier, fits it on the training data, predicts the labels for the testing data, calculates the accuracy on the training data (acc_gnb), and prints it.
+Artificial Neural Network (ANN): The code defines an ANN using the Sequential model from Keras. It adds three dense layers with varying units, activation functions, and initializers. It compiles the model with 'adam' optimizer and 'binary_crossentropy' loss function. It then trains the model on the training data for 100 epochs and prints the accuracy on the training data (acc_ANN).
+Dimensionality reduction using PCA: The code uses Principal Component Analysis (PCA) from scikit-learn to perform dimensionality reduction on the feature matrix. It fits PCA on the training data and transforms both the training and testing data. It calculates the accuracy of PCA on the training data (acc_PCA) and prints it.
+
+Creating a summary of model performances: The code creates a pandas DataFrame called models to store the names of different models and their corresponding accuracy scores. It then sorts the DataFrame by the 'Score' column in descending order.
+
+Printing the model performances: The code prints the DataFrame models, which displays the models and their respective accuracy scores.
+
+Overall, the code loads the dataset, preprocesses the data, applies feature scaling, trains and evaluates multiple classification models, performs dimensionality reduction, and summarizes the performances of the models.
+
+
+################### Main #######################
+
+
+Importing libraries: The code starts by importing necessary libraries such as numpy, pandas, matplotlib.pyplot, seaborn, and warnings.
+
+Setting up Kaggle environment: There are some commented lines that mention the Kaggle Python environment and provide information on available packages and directories. These lines are informative and do not affect the code's execution.
+
+Loading and exploring the dataset: The code reads a CSV file named 'data.csv' using pandas and assigns it to the variable ESR. The first column of ESR is then dropped using the drop() function. The first few rows of the dataset are printed using ESR.head().
+
+Visualizing the class distribution: The code extracts the 'y' column from the dataset and assigns it to the variable tgt. Any values in tgt greater than 1 are set to 0, effectively binarizing the target variable. It then creates a countplot using seaborn's countplot function to display the count of each class in tgt. The counts of the non-seizure class and seizure class are calculated and printed.
+
+Checking for missing values: The code checks for missing values in the dataset using the isnull() function and sums up the total missing values using sum().sum(). However, the result is not stored or printed.
+
+Descriptive statistics of the dataset: The code prints the descriptive statistics of the dataset using ESR.describe().
+
+Extracting the feature matrix and target variable: The code extracts the feature matrix X by selecting columns 1 to 177 from the dataset using ESR.iloc[:, 1:178]. It also extracts the target variable Y by selecting the last column (index 178) from the dataset. The shapes of X and Y are printed to verify the dimensions.
+
+Splitting the dataset into training and testing sets: The code uses train_test_split from scikit-learn to split the feature matrix X and target variable Y into training and testing sets. It assigns the split data to X_train, X_test, y_train, and y_test, with a test size of 20%.
+
+Feature scaling: The code applies feature scaling to the training and testing data using StandardScaler from scikit-learn. It fits the scaler on the training data (X_train) and then transforms both the training and testing data (X_train and X_test).
+
+Training a Support Vector Machine (SVM) classifier: The code creates an SVM classifier using SVC from scikit-learn. It fits the classifier on the scaled training data and predicts the labels for the testing data. It calculates the accuracy of the model on the training data (acc_svc) and prints it.
+
+Making predictions on new input: The code creates a new input sample by selecting the values from the 7th row of the dataset excluding the last column. It predicts the output for the new input using the trained SVM classifier and stores it in new_output. It then checks the value of new_output and prints a corresponding message based on whether the output is 1 or not.
+
+In summary, the code loads a dataset, preprocesses it by dropping columns and scaling the features, trains an SVM classifier, and makes predictions on new input. It also includes some descriptive statistics and visualization of the dataset.

@@ -107,12 +107,4 @@ temp/
 *.pyc
 *.db
 *.pid
-# django migrations
 **/.idea/**
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
-.idea
-**/setup/migrations/**
-!**/setup/migrations
-!**/setup/migrations/__init__.py
